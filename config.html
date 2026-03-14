@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperMenu | Visual Configurator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #0f172a; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .accent-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+        input, select { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <div>
+                <h1 class="text-4xl font-black tracking-tighter text-blue-500">CONFIGURATOR <span class="text-white text-sm bg-blue-600 px-2 py-1 rounded ml-2">V3.0</span></h1>
+                <p class="text-slate-400">Stop reading docs. Start building your menu visually.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="index.html" class="px-4 py-2 glass rounded-lg hover:bg-white/10 transition">Back Home</a>
+                <button onclick="copyConfig()" class="px-6 py-2 bg-blue-600 rounded-lg font-bold accent-glow hover:bg-blue-500 transition">Copy Final Code</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="space-y-6">
+                
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-400">
+                        <i class="fas fa-palette"></i> Visual Style
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase text-slate-500 mb-2 font-bold">Menu Theme</label>
+                            <select id="theme" oninput="updateConfig()" class="w-full p-3 rounded-xl outline-none focus:border-blue-500">
+                                <option value="dark_neon">Dark Neon</option>
+                                <option value="glassmorphism">Glassmorphism</option>
+                                <option value="minimal_light">Minimal Light</option>
+                                <option value="cyberpunk_red">Cyberpunk Red</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase text-slate-500 mb-2 font-bold">Accent Color</label>
+                            <input type="color" id="accentColor" value="#3b82f6" oninput="updateConfig()" class="w-full h-12 p-1 rounded-xl cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-green-400">
+                        <i class="fas fa-tachometer-alt"></i> Performance
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span>Enable Low Latency Mode</span>
+                            <input type="checkbox" id="lowLatency" checked oninput="updateConfig()" class="w-6 h-6 rounded accent-blue-600">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Hardware Acceleration</span>
+                            <input type="checkbox" id="hwAccel" checked oninput="updateConfig()" class="w-6 h-6 rounded accent-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase text-slate-500 mb-2 font-bold">Update Frequency (ms)</label>
+                            <input type="range" id="refreshRate" min="1" max="100" value="16" oninput="updateConfig()" class="w-full accent-blue-600">
+                            <span id="refreshVal" class="text-blue-400 text-sm">16ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-400">
+                        <i class="fas fa-keyboard"></i> Keybinds
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase text-slate-500 mb-2 font-bold">Open Menu</label>
+                            <input type="text" id="openKey" value="F4" oninput="updateConfig()" class="w-full p-3 rounded-xl outline-none" placeholder="e.g. F4">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase text-slate-500 mb-2 font-bold">Quick Close</label>
+                            <input type="text" id="closeKey" value="ESC" oninput="updateConfig()" class="w-full p-3 rounded-xl outline-none" placeholder="e.g. ESC">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="space-y-6">
+                
+                <div class="bg-black/50 border border-white/10 rounded-2xl p-0 overflow-hidden h-full flex flex-col">
+                    <div class="bg-white/5 px-6 py-3 border-b border-white/10 flex justify-between items-center">
+                        <span class="text-xs font-mono text-slate-500 uppercase tracking-widest">Generated Config (JSON)</span>
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                        </div>
+                    </div>
+                    <pre class="p-6 text-blue-300 font-mono text-sm flex-grow overflow-auto" id="configOutput">
+                    </pre>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mt-10 p-6 glass rounded-2xl border-l-4 border-yellow-500">
+            <h4 class="font-bold mb-2">💡 Quick Tip</h4>
+            <p class="text-slate-400 text-sm">Once you finish tweaking these sliders and inputs, hit the <strong>Copy Final Code</strong> button at the top. You can then paste that code into your project's <code>settings.json</code> or <code>config.lua</code> file.</p>
+        </div>
+    </div>
+
+    <script>
+        function updateConfig() {
+            // Get values from controls
+            const theme = document.getElementById('theme').value;
+            const accent = document.getElementById('accentColor').value;
+            const latency = document.getElementById('lowLatency').checked;
+            const hw = document.getElementById('hwAccel').checked;
+            const rate = document.getElementById('refreshRate').value;
+            const openKey = document.getElementById('openKey').value;
+            const closeKey = document.getElementById('closeKey').value;
+
+            // Update UI
+            document.getElementById('refreshVal').innerText = rate + "ms";
+
+            // Build Config Object
+            const config = {
+                "hypermenu_version": "3.0",
+                "ui": {
+                    "theme": theme,
+                    "accent_color": accent,
+                    "blur_strength": "12px",
+                    "animations": true
+                },
+                "performance": {
+                    "low_latency": latency,
+                    "hardware_acceleration": hw,
+                    "tick_rate": rate + "ms",
+                    "auto_cleanup": true
+                },
+                "input_mapping": {
+                    "open_menu": openKey,
+                    "close_menu": closeKey,
+                    "navigation": "arrow_keys"
+                },
+                "metadata": {
+                    "last_updated": new Date().toISOString().split('T')[0],
+                    "generated_by": "HyperMenu_Visual_Config"
+                }
+            };
+
+            // Output to screen
+            document.getElementById('configOutput').textContent = JSON.stringify(config, null, 4);
+        }
+
+        function copyConfig() {
+            const code = document.getElementById('configOutput').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Config code copied to clipboard! Paste it in your settings file.");
+            });
+        }
+
+        // Run once on load
+        updateConfig();
+    </script>
+</body>
+</html>
