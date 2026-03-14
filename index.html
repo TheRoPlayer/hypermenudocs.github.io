@@ -3,182 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HYPERMENU | OFFICIAL SITE</title>
+    <title>HyperMenu | Documentation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Fira+Code:wght@400;500&display=swap');
-
-        html { scroll-behavior: smooth; } /* Makes clicking "Docs" slide down smoothly */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap');
         
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #020617;
-            color: #f8fafc;
-            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .code-block {
+        pre {
+            background: #1e1e1e !important;
+            color: #d4d4d4 !important;
+            padding: 1.5rem;
+            border-radius: 8px;
             font-family: 'Fira Code', monospace;
-            background: #0f172a !important;
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 4px solid #3b82f6;
-            color: #93c5fd;
-            overflow-x: auto;
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            margin: 1.5rem 0;
         }
 
-        /* Animated Background Shapes */
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
+        .sidebar-link {
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            color: #2563eb;
+            background: #f1f5f9;
+            border-left: 2px solid #2563eb;
+        }
+
+        kbd {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50">
 
-    <div class="blob top-[-10%] left-[-10%]"></div>
-    <div class="blob bottom-[-10%] right-[-10%]"></div>
-
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
-                <span class="bg-blue-600 p-1 rounded">HM</span> HYPERMENU
+    <nav class="fixed top-0 w-full bg-white border-b border-slate-200 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 font-extrabold text-blue-600 text-xl tracking-tight">
+                <i class="fas fa-book-open"></i> HYPERMENU <span class="text-slate-400 font-light ml-2">DOCS</span>
             </div>
-            <div class="flex gap-8 items-center">
-                <a href="#about" class="hover:text-blue-400 transition font-medium">How It Started</a>
-                <a href="#docs" class="px-6 py-2 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-900/20">Docs</a>
+            <div class="flex gap-4">
+                <a href="privacy.html" class="text-sm text-slate-500 hover:text-blue-600">Privacy</a>
+                <a href="tos.html" class="text-sm text-slate-500 hover:text-blue-600">Terms</a>
             </div>
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
-        <h1 class="text-7xl md:text-9xl font-bold mb-6 tracking-tighter leading-none">
-            FASTER. <br><span class="text-blue-500 underline decoration-blue-900">BETTER.</span>
-        </h1>
-        <p class="max-w-2xl text-xl text-slate-400 mb-10 leading-relaxed">
-            The ultimate menu configuration framework for the next generation of users. Fully open-source and ready for action.
-        </p>
-        <div class="flex gap-4">
-            <a href="#docs" class="px-10 py-4 bg-white text-black font-black rounded-2xl hover:scale-105 transition-all">
-                OPEN DOCS ↓
-            </a>
-            <a href="#about" class="px-10 py-4 glass rounded-2xl font-bold hover:bg-white/5 transition-all">
-                OUR STORY
-            </a>
-        </div>
+    <div class="max-w-7xl mx-auto px-6 pt-24 pb-20 flex flex-col md:flex-row gap-12">
         
-        <div class="mt-20 glass p-2 rounded-3xl max-w-4xl shadow-2xl overflow-hidden animate-pulse">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="UI" class="rounded-2xl opacity-80">
-        </div>
-    </section>
+        <aside class="w-full md:w-64 space-y-8 sticky top-24 h-fit">
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Getting Started</h4>
+                <nav class="flex flex-col gap-1">
+                    <a href="#introduction" class="sidebar-link px-4 py-2 rounded text-slate-600">Introduction</a>
+                    <a href="#setup" class="sidebar-link px-4 py-2 rounded text-slate-600">Quick Setup</a>
+                </nav>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Configuration</h4>
+                <nav class="flex flex-col gap-1">
+                    <a href="#keybinds" class="sidebar-link px-4 py-2 rounded text-slate-600">Default Keybinds</a>
+                    <a href="#json" class="sidebar-link px-4 py-2 rounded text-slate-600">JSON Format</a>
+                </nav>
+            </div>
+        </aside>
 
-    <section id="about" class="py-32 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="inline-block text-blue-500 font-bold tracking-widest text-sm mb-4 uppercase">The Origin</div>
-            <h2 class="text-5xl font-bold mb-8">How It All Started</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div class="text-lg text-slate-400 leading-relaxed space-y-6">
-                    <p>It began as a simple challenge: <span class="text-white font-bold italic">"Can we make a menu that responds in under 1ms?"</span></p>
-                    <p>Back in 2024, everything was slow. We spent months stripping away the bloat and rewriting the core engine to prioritize pure speed. Today, HyperMenu is the fastest choice for developers worldwide.</p>
+        <main class="flex-1 bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200">
+            
+            <section id="introduction" class="mb-20">
+                <h1 class="text-4xl font-black mb-6 text-slate-900 tracking-tight">Introduction</h1>
+                <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                    Welcome to the <strong>HyperMenu</strong> documentation. This guide will walk you through the installation, configuration, and optimization of the menu framework. HyperMenu is designed to be lightweight, efficient, and fully customizable.
+                </p>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 text-blue-800 rounded-r-lg">
+                    <strong>Notice:</strong> HyperMenu 3.0 is now the standard stable version. Earlier versions are deprecated.
                 </div>
-                <div class="glass p-8 rounded-3xl border-l-4 border-blue-600">
-                    <i class="fas fa-quote-left text-3xl text-blue-600 mb-4"></i>
-                    <p class="italic text-xl">"We didn't just want a menu, we wanted a tool that feels like a natural extension of your workflow."</p>
-                    <p class="mt-4 font-bold text-white">— Lead Architect</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section id="docs" class="py-32 px-6 bg-slate-950/50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-5xl font-bold mb-4">Documentation</h2>
-            <p class="text-slate-400 mb-12 text-lg">Everything you need to set up HyperMenu in seconds.</p>
+            <section id="setup" class="mb-20 pt-10 border-t border-slate-100">
+                <h2 class="text-3xl font-bold mb-4">Quick Setup</h2>
+                <p class="text-slate-600 mb-6">To initialize the core menu system, paste the following command into your project terminal:</p>
+                
+                <pre># Initialize HyperMenu via Bash
+curl -sSL https://install.hypermenu.io | sudo bash</pre>
+                
+                <p class="text-slate-600">After installation, the system will generate a default configuration file in your root directory.</p>
+            </section>
 
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-4 text-blue-400">1. Installation</h3>
-                <p class="mb-6 text-slate-300">Run this command to install the HyperMenu core directly into your environment:</p>
-                <pre class="code-block">
-$ git clone https://github.com/HyperMenu/Project.git
-$ cd HyperMenu
-$ npm install && npm start
-                </pre>
-            </div>
-
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-4 text-blue-400">2. Configuration</h3>
-                <p class="mb-6 text-slate-300">Update your <code>settings.json</code> to enable high-performance mode:</p>
-                <pre class="code-block">
-{
-  "theme": "neon-glass",
-  "speed": "ultra",
-  "lowLatency": true,
-  "keybind": "F4"
-}
-                </pre>
-            </div>
-
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-6 text-blue-400">3. Control Keybinds</h3>
-                <div class="glass rounded-2xl overflow-hidden">
+            <section id="keybinds" class="mb-20 pt-10 border-t border-slate-100">
+                <h2 class="text-3xl font-bold mb-6">Default Keybinds</h2>
+                <div class="overflow-hidden border border-slate-200 rounded-xl">
                     <table class="w-full text-left">
-                        <thead class="bg-white/5 border-b border-white/10 text-xs uppercase tracking-widest font-bold text-slate-500">
+                        <thead class="bg-slate-50 border-b border-slate-200">
                             <tr>
-                                <th class="px-6 py-4">Function</th>
-                                <th class="px-6 py-4">Key</th>
-                                <th class="px-6 py-4">Action</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Action</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Mapping</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Behavior</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/5 text-slate-300">
-                            <tr class="hover:bg-white/5 transition">
-                                <td class="px-6 py-4 font-bold text-white">Toggle Menu</td>
-                                <td class="px-6 py-4"><span class="bg-slate-800 px-3 py-1 rounded text-sm border border-slate-700">F4</span></td>
-                                <td class="px-6 py-4 italic">Opens/Closes the overlay</td>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="px-6 py-4 font-medium">Open/Close</td>
+                                <td class="px-6 py-4"><kbd>F4</kbd></td>
+                                <td class="px-6 py-4 text-slate-500 text-sm">Toggles the primary overlay</td>
                             </tr>
-                            <tr class="hover:bg-white/5 transition">
-                                <td class="px-6 py-4 font-bold text-white">Select Item</td>
-                                <td class="px-6 py-4"><span class="bg-slate-800 px-3 py-1 rounded text-sm border border-slate-700">Enter</span></td>
-                                <td class="px-6 py-4 italic">Confirm selection</td>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="px-6 py-4 font-medium">Navigate Up</td>
+                                <td class="px-6 py-4"><kbd>↑</kbd></td>
+                                <td class="px-6 py-4 text-slate-500 text-sm">Move selection up</td>
                             </tr>
-                            <tr class="hover:bg-white/5 transition">
-                                <td class="px-6 py-4 font-bold text-white">Navigation</td>
-                                <td class="px-6 py-4"><span class="bg-slate-800 px-3 py-1 rounded text-sm border border-slate-700">Arrows</span></td>
-                                <td class="px-6 py-4 italic">Move between options</td>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="px-6 py-4 font-medium">Confirm</td>
+                                <td class="px-6 py-4"><kbd>Enter</kbd></td>
+                                <td class="px-6 py-4 text-slate-500 text-sm">Select highlighted item</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <footer class="py-20 px-6 border-t border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div>
-                <div class="text-2xl font-bold mb-4">HYPERMENU</div>
-                <div class="flex gap-6 text-sm text-slate-500">
-                    <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="tos.html" class="hover:text-white transition">Terms of Service</a>
-                </div>
-            </div>
-            <div class="text-slate-600 text-sm font-mono">
-                &copy; 2026 THE HYPERMENU PROJECT // ALL RIGHTS RESERVED
+            <section id="json" class="mb-20 pt-10 border-t border-slate-100">
+                <h2 class="text-3xl font-bold mb-6 text-slate-900">Config Format</h2>
+                <p class="text-slate-600 mb-6">Your <code>config.json</code> should follow the standard schema to ensure compatibility with the rendering engine:</p>
+                
+                <pre>{
+  "theme": "modern-blue",
+  "opacity": 0.95,
+  "animations": true,
+  "settings": {
+    "speed": "ultra",
+    "debug_mode": false
+  }
+}</pre>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="bg-slate-100 py-12 px-6 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-slate-500 text-sm">
+            <p>&copy; 2026 HyperMenu Project</p>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="hover:text-slate-900 underline decoration-slate-300">Privacy Policy</a>
+                <a href="tos.html" class="hover:text-slate-900 underline decoration-slate-300">Terms of Service</a>
             </div>
         </div>
     </footer>
+
+</body>
+</html>
 
 </body>
 </html>
