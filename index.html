@@ -3,170 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperMenu | Roblox Docs</title>
+    <title>HYPERMENU | ROBLOX DOCUMENTATION</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --studio-dark: #1B1D1E;
+            --studio-panel: #232527;
+            --studio-border: #393B3D;
+            --roblox-blue: #00A2FF;
+            --luau-keyword: #F86D7C;
+            --luau-string: #92E1C0;
+            --luau-function: #84D2FF;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1B1D1E; /* Roblox Dark Theme Background */
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--studio-dark);
             color: #FFFFFF;
+            scroll-behavior: smooth;
         }
 
-        .sidebar-link {
-            transition: all 0.2s;
-            color: #ADB6BD;
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .sidebar-link:hover {
-            color: #00A2FF; /* Roblox Blue */
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        pre {
-            background: #000000 !important;
-            color: #00FF00 !important; /* Classic Scripting Green */
-            padding: 1.2rem;
-            border-radius: 4px;
-            font-family: 'Fira Code', monospace;
-            border: 1px solid #393B3D;
-            margin: 1rem 0;
-        }
-
-        .roblox-card {
-            background: #232527;
-            border: 1px solid #393B3D;
+        /* --- UI COMPONENTS --- */
+        .glass-panel {
+            background: var(--studio-panel);
+            border: 1px solid var(--studio-border);
             border-radius: 8px;
         }
 
-        kbd {
-            background: #393B3D;
-            color: #FFFFFF;
-            border: 1px solid #525559;
-            border-radius: 3px;
-            padding: 2px 5px;
-            font-size: 0.85rem;
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 6px;
+            color: #ADB6BD;
+            transition: all 0.2s;
         }
 
-        .blue-accent { color: #00A2FF; }
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--roblox-blue);
+        }
+
+        .sidebar-item.active {
+            background: rgba(0, 162, 255, 0.1);
+            color: var(--roblox-blue);
+            font-weight: 600;
+        }
+
+        /* --- LUAU SYNTAX HIGHLIGHTING --- */
+        .code-block {
+            background: #000000;
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid var(--studio-border);
+            line-height: 1.6;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .kw { color: var(--luau-keyword); }
+        .st { color: var(--luau-string); }
+        .fn { color: var(--luau-function); }
+        .cm { color: #666666; font-style: italic; }
+
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--studio-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--studio-border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+        .step-pill {
+            background: var(--roblox-blue);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body class="bg-[#1B1D1E]">
+<body>
 
-    <nav class="fixed top-0 w-full bg-[#232527] border-b border-[#393B3D] z-50">
-        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-            <div class="flex items-center gap-3 font-bold text-white text-lg tracking-wide uppercase">
-                <i class="fas fa-cube blue-accent"></i> HyperMenu <span class="text-xs bg-[#393B3D] px-2 py-0.5 rounded ml-2">ROBLOX</span>
+    <header class="fixed top-0 w-full h-16 bg-[#232527] border-b border-[#393B3D] z-50 flex items-center justify-between px-8">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-md flex items-center justify-center">
+                <i class="fas fa-layer-group text-white text-sm"></i>
             </div>
-            <div class="flex gap-6 text-sm">
-                <a href="privacy.html" class="text-[#ADB6BD] hover:text-white transition">Privacy</a>
-                <a href="tos.html" class="text-[#ADB6BD] hover:text-white transition">Terms</a>
-            </div>
+            <span class="text-lg font-extrabold tracking-tight">HYPERMENU <span class="text-blue-500">V3</span></span>
         </div>
-    </nav>
+        <div class="flex gap-6 text-sm font-medium">
+            <a href="https://roblox.com" class="text-slate-400 hover:text-white transition">Creator Store</a>
+            <a href="https://github.com" class="text-slate-400 hover:text-white transition">GitHub</a>
+            <div class="w-px h-4 bg-white/10 my-auto"></div>
+            <a href="privacy.html" class="text-slate-400 hover:text-white transition">Privacy</a>
+        </div>
+    </header>
 
-    <div class="max-w-7xl mx-auto px-6 pt-20 pb-20 flex flex-col md:flex-row gap-8">
+    <div class="flex max-w-[1600px] mx-auto pt-16 min-h-screen">
         
-        <aside class="w-full md:w-64 space-y-6 sticky top-20 h-fit">
-            <div class="roblox-card p-4">
-                <h4 class="text-xs font-bold uppercase text-[#ADB6BD] mb-4">Navigation</h4>
-                <nav class="flex flex-col gap-2">
-                    <a href="#about" class="sidebar-link px-3 py-2 rounded">How it Started</a>
-                    <a href="#setup" class="sidebar-link px-3 py-2 rounded">Studio Setup</a>
-                    <a href="#keybinds" class="sidebar-link px-3 py-2 rounded">Keybinds</a>
-                    <a href="#config" class="sidebar-link px-3 py-2 rounded">Module Configuration</a>
+        <aside class="w-72 border-r border-[#393B3D] h-[calc(100vh-64px)] fixed overflow-y-auto p-6 hidden lg:block">
+            <div class="mb-10">
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Core Docs</h3>
+                <nav class="space-y-1">
+                    <a href="#welcome" class="sidebar-item active"><i class="fas fa-hand-sparkles"></i> Welcome</a>
+                    <a href="#how-it-started" class="sidebar-item"><i class="fas fa-history"></i> The Origin</a>
+                    <a href="#setup" class="sidebar-item"><i class="fas fa-download"></i> Studio Setup</a>
+                </nav>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Reference</h3>
+                <nav class="space-y-1">
+                    <a href="#keybinds" class="sidebar-item"><i class="fas fa-keyboard"></i> Keybinds</a>
+                    <a href="#config" class="sidebar-item"><i class="fas fa-cog"></i> Configuration</a>
+                    <a href="#api" class="sidebar-item"><i class="fas fa-code"></i> API Methods</a>
                 </nav>
             </div>
         </aside>
 
-        <main class="flex-1 space-y-12">
+        <main class="flex-1 lg:ml-72 p-8 lg:p-16 max-w-5xl">
             
-            <section id="about" class="roblox-card p-8">
-                <h1 class="text-3xl font-bold mb-4">How it Started</h1>
-                <p class="text-[#ADB6BD] leading-relaxed mb-4">
-                    HyperMenu was created during a long summer of Roblox development. We were building a massive RPG and realized that the default GUI systems were too slow for high-stakes gameplay.
-                </p>
-                <p class="text-[#ADB6BD] leading-relaxed">
-                    We wanted a menu that felt "instant." After months of testing different ModuleScripts and UI layouts, HyperMenu was born—a lightweight, fast, and easy-to-use menu for every Roblox developer.
+            <section id="welcome" class="mb-24">
+                <div class="bg-blue-600/10 border border-blue-500/20 p-4 rounded-lg mb-8 flex items-center gap-4">
+                    <span class="animate-pulse flex h-3 w-3 rounded-full bg-blue-500"></span>
+                    <span class="text-blue-400 text-sm font-semibold">Latest Stable: v3.4.0 (March 2026)</span>
+                </div>
+                <h1 class="text-5xl font-extrabold mb-6">Interface Framework for Roblox</h1>
+                <p class="text-xl text-slate-400 leading-relaxed max-w-3xl">
+                    HyperMenu is a high-performance, single-module GUI solution built specifically for Luau. Optimized for latency, controller support, and seamless integration into any experience.
                 </p>
             </section>
 
-            <section id="setup" class="roblox-card p-8">
-                <h2 class="text-2xl font-bold mb-4 blue-accent">Studio Setup</h2>
-                <p class="text-[#ADB6BD] mb-4 text-sm">Follow these steps to get HyperMenu working in your game:</p>
-                <ol class="list-decimal list-inside space-y-2 text-[#ADB6BD] mb-6">
-                    <li>Download the HyperMenu Model from the Creator Store.</li>
-                    <li>Drag the <span class="text-white font-bold">HyperMenuModule</span> into <code class="text-blue-300">ReplicatedStorage</code>.</li>
-                    <li>Create a LocalScript in <code class="text-blue-300">StarterPlayerScripts</code>.</li>
-                </ol>
-                
-                <p class="text-xs font-bold text-[#ADB6BD] uppercase mb-2">Initialize Script:</p>
-                <pre>-- LocalScript inside StarterPlayerScripts
-local HyperMenu = require(game.ReplicatedStorage:WaitForChild("HyperMenuModule"))
-
-HyperMenu:Init({
-    Theme = "Dark",
-    DebugMode = false
-})</pre>
+            <section id="how-it-started" class="mb-24 pt-10 border-t border-white/5">
+                <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                    <i class="fas fa-scroll text-blue-500"></i> The Origin Story
+                </h2>
+                <div class="glass-panel p-8 space-y-6 text-slate-300 leading-relaxed">
+                    <p>
+                        HyperMenu didn't start in a corporate office. It started in a <span class="text-white font-bold">Roblox Studio</span> session during a 48-hour Game Jam. We were building a fast-paced combat game and realized that traditional GUIs just couldn't keep up with the frame-perfect inputs we needed.
+                    </p>
+                    <p>
+                        The goal was simple: <span class="text-white font-semibold italic">"One module, zero lag."</span> We spent months rewriting the tweening engines and input listeners to bypass the usual Roblox overhead. Today, HyperMenu is the tool we wish we had when we first started developing.
+                    </p>
+                </div>
             </section>
 
-            <section id="keybinds" class="roblox-card p-8">
-                <h2 class="text-2xl font-bold mb-6">Default Keybinds</h2>
-                <div class="overflow-hidden border border-[#393B3D] rounded">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-[#1B1D1E] border-b border-[#393B3D]">
+            <section id="setup" class="mb-24 pt-10 border-t border-white/5">
+                <h2 class="text-3xl font-bold mb-8">Studio Setup</h2>
+                <div class="space-y-12">
+                    <div class="flex gap-6">
+                        <span class="step-pill">1</span>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-white">Import the Module</h4>
+                            <p class="text-slate-400 mb-4 text-sm">Place the HyperMenu folder inside <code class="bg-white/5 px-2 py-1 rounded text-blue-400">ReplicatedStorage</code> so it can be accessed by both Client and Server.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6">
+                        <span class="step-pill">2</span>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2 text-white">Initialize on Client</h4>
+                            <p class="text-slate-400 mb-4 text-sm">Inside a LocalScript in <code class="bg-white/5 px-2 py-1 rounded text-blue-400">StarterPlayerScripts</code>, initialize the framework.</p>
+                            <div class="code-block">
+<span class="cm">-- Client Bootstrap</span>
+<span class="kw">local</span> <span class="fn">ReplicatedStorage</span> = game:GetService(<span class="st">"ReplicatedStorage"</span>)
+<span class="kw">local</span> <span class="fn">HyperMenu</span> = <span class="fn">require</span>(ReplicatedStorage:WaitForChild(<span class="st">"HyperMenu"</span>))
+
+HyperMenu.Init({
+    <span class="fn">Theme</span> = <span class="st">"Dark"</span>,
+    <span class="fn">Keybind</span> = Enum.KeyCode.F4
+})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="keybinds" class="mb-24 pt-10 border-t border-white/5">
+                <h2 class="text-3xl font-bold mb-8">Default Controls</h2>
+                <div class="glass-panel overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-white/5 border-b border-[#393B3D]">
                             <tr>
-                                <th class="px-6 py-3 font-bold text-[#ADB6BD]">Action</th>
-                                <th class="px-6 py-3 font-bold text-[#ADB6BD]">Key</th>
-                                <th class="px-6 py-3 font-bold text-[#ADB6BD]">Function</th>
+                                <th class="px-6 py-4 text-xs uppercase font-bold text-slate-500">Action</th>
+                                <th class="px-6 py-4 text-xs uppercase font-bold text-slate-500">Keybind</th>
+                                <th class="px-6 py-4 text-xs uppercase font-bold text-slate-500">Context</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-[#393B3D]">
-                            <tr>
-                                <td class="px-6 py-4 font-bold">Toggle GUI</td>
-                                <td class="px-6 py-4"><kbd>F4</kbd></td>
-                                <td class="px-6 py-4 text-[#ADB6BD]">Opens or closes the main menu.</td>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-5 font-bold">Toggle Main Menu</td>
+                                <td class="px-6 py-5"><code class="bg-[#393B3D] px-2 py-1 rounded text-sm font-bold text-blue-400">F4</code></td>
+                                <td class="px-6 py-5 text-slate-400">Desktop / PC</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-bold">Close All</td>
-                                <td class="px-6 py-4"><kbd>ESC</kbd></td>
-                                <td class="px-6 py-4 text-[#ADB6BD]">Instantly exits all active menus.</td>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-5 font-bold">Menu Navigation</td>
+                                <td class="px-6 py-5"><code class="bg-[#393B3D] px-2 py-1 rounded text-sm font-bold text-blue-400">WASD / ARROWS</code></td>
+                                <td class="px-6 py-5 text-slate-400">Universal</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-bold">Confirm Select</td>
-                                <td class="px-6 py-4"><kbd>Enter</kbd></td>
-                                <td class="px-6 py-4 text-[#ADB6BD]">Triggers the selected button action.</td>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-5 font-bold">Close / Back</td>
+                                <td class="px-6 py-5"><code class="bg-[#393B3D] px-2 py-1 rounded text-sm font-bold text-blue-400">ESC / B</code></td>
+                                <td class="px-6 py-5 text-slate-400">PC / Controller</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section id="config" class="roblox-card p-8">
-                <h2 class="text-2xl font-bold mb-4 blue-accent">Module Config</h2>
-                <p class="text-[#ADB6BD] mb-4 italic">Example table for your Configuration Module:</p>
-                <pre>local Config = {
-    ["MenuName"] = "HyperMenu V3",
-    ["PrimaryColor"] = Color3.fromRGB(0, 162, 255),
-    ["TweenSpeed"] = 0.2,
-    ["Keybind"] = Enum.KeyCode.F4
+            <section id="config" class="mb-24 pt-10 border-t border-white/5">
+                <h2 class="text-3xl font-bold mb-8 text-white">Visual Configuration</h2>
+                <p class="text-slate-400 mb-8 leading-relaxed">Customize your theme by modifying the <code class="text-white">Settings.lua</code> ModuleScript. All colors use standard <code class="text-white">Color3.fromRGB</code> values.</p>
+                
+                <div class="code-block">
+<span class="kw">return</span> {
+    <span class="fn">AccentColor</span> = <span class="fn">Color3.fromRGB</span>(<span class="st">0, 162, 255</span>),
+    <span class="fn">BackgroundTransparency</span> = <span class="fn">0.1</span>,
+    <span class="fn">BlurStrength</span> = <span class="fn">20</span>,
+    <span class="fn">Font</span> = Enum.Font.GothamBold,
+    <span class="fn">RoundedCorners</span> = <span class="fn">true</span>
 }
-
-return Config</pre>
+                </div>
             </section>
 
+            <footer class="pt-20 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-sm uppercase tracking-widest font-bold mb-4">&copy; 2026 HyperMenu Project</p>
+                <div class="flex justify-center gap-8 text-xs text-slate-500">
+                    <a href="privacy.html" class="hover:text-blue-500">Privacy Policy</a>
+                    <a href="tos.html" class="hover:text-blue-500">Terms of Service</a>
+                    <a href="#" class="hover:text-blue-500">DMCA</a>
+                </div>
+            </footer>
         </main>
     </div>
-
-    <footer class="bg-[#232527] py-12 px-6 border-t border-[#393B3D] text-center">
-        <p class="text-[#ADB6BD] text-sm">&copy; 2026 HyperMenu Roblox Project</p>
-        <div class="flex justify-center gap-6 mt-4 text-xs">
-            <a href="privacy.html" class="hover:text-white underline">Privacy Policy</a>
-            <a href="tos.html" class="hover:text-white underline">Terms of Service</a>
-        </div>
-    </footer>
 
 </body>
 </html>
